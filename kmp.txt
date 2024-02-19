@@ -1,0 +1,47 @@
+对s中每个位置i 找到最大的j使s[i - j + 1]... s[i]和p[1]... p[j] 相同
+
+现在把i向右移动一个位置 会发生什么
+	若j != m并且s[i + 1]和p[j + 1]是一样的，那么j也向右移动一位就好了
+	否则让j向前回到满足串s[i - k + 1]...s[i]和p[1]...p[k]完全相等且k的值最大的位置，然后继续判断
+如果s[i + 1]和p[j + 1]仍然不相同的话，不停向前回退，直到s[i + 1]和p[j + 1]相同
+
+求k和s无关 s[i - k + 1]...s[i]和p[j - k + 1]...p[j]相同
+要求的是找到最大的k满足k < j, 使p[1]...p[k]和[j - k + 1]...p[j]完全相同
+用next数组维护每个j对应的k
+abababc
+0012340
+
+若next[i] = j
+	若p[i + 1] == p[j + 1]
+		next[i + 1] = j + 1
+	否则 j = next[j] 看p[i +1]和p[j + 1]是否相同
+
+int n, m;
+int nxt[M +1], f[N + 1];
+char s[N + 2], p[M + 2];
+void kmp() {
+	n = strlen(s +1);
+	m = strlen(p + 1);
+	int j = 0;
+	nxt[1] = 0;
+	for(int i = 2; i <= m; i++) {
+		while (j > 0 && p[j + 1] != p[j]) {
+			j = nxt[j];
+		}
+		if (p[j + 1] == p[i]) j++;
+		nxt[i] = j;
+	}
+
+	j = 0;
+	for (int i = 1; i <= n; i++) {
+		while ((j == m) || (j > 0 && p[j +1] != s[i])) {
+			j = nxt[j];
+		}
+		if (p[j + 1] == s[i]) {
+			j++;
+		}
+		f[i] = j;
+	}
+}
+
+j的值最多只可能增加n + m次，回退次数总计也不会超过n + m次
