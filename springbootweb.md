@@ -7,6 +7,7 @@ Spring Framework配置繁琐，入门难度大
 一个简单的应用：浏览器发起`/hello`请求后，给浏览器返回一个字符串`Hello World~`
 ![在这里插入图片描述](https://img-blog.csdnimg.cn/direct/a60baca5483845058cff75d8e099d2c8.png)
 步骤：
+
 1. 创建springboot工程，并勾选web开发相关依赖。
 2. 定义`HelloController`类，添加方法`hello`，并添加注解。
 3. 运行测试
@@ -3315,9 +3316,10 @@ spring.servlet.multipart.max-request-size=100MB
   创建accesskey
   
   ```
-  LTAI5tS9vheZNKAD1W1JDrGA
-  JpLqOaan1LaiFUXG9FgpKEPuBcACZZ
+  此处应保密
   ```
+  
+  
   
   在官方文档中找到上传文件流的[示例](https://help.aliyun.com/zh/oss/developer-reference/simple-upload-11?spm=a2c4g.11186623.0.0.126356e5jD5Y90#p-yqj-z1w-rl2)，直接复制到test的软件包中，**只需要修改ossClient实例前的各个参数即可**，核心代码都不需要改动
   
@@ -3342,8 +3344,8 @@ spring.servlet.multipart.max-request-size=100MB
   
           // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
   //        EnvironmentVariableCredentialsProvider credentialsProvider = CredentialsProviderFactory.newEnvironmentVariableCredentialsProvider();
-          String accessKeyId = "LTAI5tS9vheZNKAD1W1JDrGA";
-          String accessKeySecret = "JpLqOaan1LaiFUXG9FgpKEPuBcACZZ";
+          String accessKeyId = "此处应保密";
+          String accessKeySecret = "此处应保密";
   
           // 填写Bucket名称，例如examplebucket。
   //        String bucketName = "examplebucket";
@@ -3419,8 +3421,8 @@ spring.servlet.multipart.max-request-size=100MB
      public class AliOSSUtils {
      
          private String endpoint = "https://oss-cn-hangzhou.aliyuncs.com";
-         private String accessKeyId = "LTAI5tS9vheZNKAD1W1JDrGA";
-         private String accessKeySecret = "JpLqOaan1LaiFUXG9FgpKEPuBcACZZ";
+         private String accessKeyId = "此处应保密";
+         private String accessKeySecret = "此处应保密";
          private String bucketName = "wuqing-web-tlias";
      
          /**
@@ -3526,8 +3528,8 @@ spring.servlet.multipart.max-request-size=100MB
 ```properties
 # 自定义OSS配置信息，键的名字可以自定义
 aliyun.oss.endpoint=https://oss-cn-hangzhou.aliyuncs.com
-aliyun.oss.accessKeyId=LTAI5tS9vheZNKAD1W1JDrGA
-aliyun.oss.accessKeySecret=JpLqOaan1LaiFUXG9FgpKEPuBcACZZ
+aliyun.oss.accessKeyId=此处应保密
+aliyun.oss.accessKeySecret=此处应保密
 aliyun.oss.bucketName=wuqing-web-tlias"
 ```
 
@@ -3644,8 +3646,8 @@ server:
   aliyun:
     oss:
       endpoint: https://oss-cn-hangzhou.aliyuncs.com
-      accessKeyId: LTAI5tS9vheZNKAD1W1JDrGA
-      accessKeySecret: JpLqOaan1LaiFUXG9FgpKEPuBcACZZ
+      accessKeyId: 此处应保密
+      accessKeySecret: 此处应保密
       bucketName: wuqing-web-tlias
   
   ```
