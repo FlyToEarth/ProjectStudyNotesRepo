@@ -1648,7 +1648,7 @@ mybatis.configuration.log-impl=org.apache.ibatis.logging.stdout.StdOutImpl
 
 输出的日志信息如下
 
-![image-20240215203146559](./images/image-20240215203146559.png)
+![image-20240215203146559](D:\Working\文件\笔记图\JDBC\image-20240215203146559.png)
 
 ？为参数占位符，会使用Parameters的参数替换掉占位符？，然后删除id为16的员工信息，updates为0代表这句语句影响的记录数为0，没有真删除掉数据
 
@@ -1896,7 +1896,7 @@ public interface EmpMapper {
 
 即，映射文件和接口有同样的包路径，配置文件要和接口关联起来（通过namespace属性），配置文件中的SQL要和接口中的方法关联起来（通过id属性）
 
-![image-20240215231450296](./images/image-20240215231450296.png)
+![image-20240215231450296](D:\Working\文件\笔记图\JDBC\image-20240215231450296.png)
 
 定义一个XML映射文件，文件头直接上[官网](https://mybatis.net.cn/getting-started.html)复制一份，文件中有一个根标签mapper，mapper有一个唯一的属性**namespace，属性值是mapper接口的全限定名**。以条件查询员工为例，直接将注解中的SQL语句复制过来放到`<select>`标签中，并按照规范为`<select>`标签设置`id`，`id`要和mapper接口中的方法名一致。如果有返回值，则为标签添加`resultType`属性，属性值为封装的对象类型的全限定类名。
 
@@ -2030,7 +2030,7 @@ public void testUpdate2() {
 
 查看数据库表会发现后边四个字段都变成了null
 
-![image-20240216110014579](./images/image-20240216110014579.png)
+![image-20240216110014579](D:\Working\文件\笔记图\JDBC\image-20240216110014579.png)
 
 调用update方法时后几个字段都没有赋值，会被更新为null。
 
@@ -2140,7 +2140,7 @@ void deleteByids(List<Integer> ids);
 
 目前XML映射文件的问题：可能存在大量重复的SQL片段。
 
-![image-20240216114502991](./images/image-20240216114502991.png)
+![image-20240216114502991](D:\Working\文件\笔记图\JDBC\image-20240216114502991.png)
 
 可以和Java一样，将重复的代码进行抽取，在抽取的地方再引入进来，这就要使用`<sql>和<include>`标签。`<sql>`标签负责抽取，抽取的时候需要给SQL片段定一个唯一标识也就是`id`属性，`<include>`标签负责在原来抽取的位置将`sql`片段引用进来，通过`refid`属性来指定要引入的SQL片段。
 
@@ -2312,7 +2312,7 @@ REST（REpresentational State Transfer），表述性状态转换，是一种软
   
   修改完注解后使用`apifox`进行测试会发现，在使用非GET方式请求时，会返回一个405错误，代表请求方式不允许，只有用GET方式来请求才会返回正常的结果。
   
-  ![image-20240216221551411](./images/image-20240216221551411.png)
+  ![image-20240216221551411](D:\Working\文件\笔记图\JDBC\image-20240216221551411.png)
   
   继续代码实现，在Controller中注入Service对象，使用自动注入，在DeptService接口中定义返回查询结果的方法`list`，在DeptServiceImpl中实现接口的方法并注入`Mapper`对象（同样用自动注入），最后在`Mapper`接口中声明查询的方法也叫`list`，这个SQL语句比较简单，可以使用注解来写。
   
@@ -2385,7 +2385,7 @@ REST（REpresentational State Transfer），表述性状态转换，是一种软
   
   使用apifox进行测试，apifox请求获得的返回结果如下：
   
-  ![image-20240216223324934](./images/image-20240216223324934.png)
+  ![image-20240216223324934](D:\Working\文件\笔记图\JDBC\image-20240216223324934.png)
   
 - 前后端联调
 
@@ -2393,7 +2393,7 @@ REST（REpresentational State Transfer），表述性状态转换，是一种软
 
   成功后访问`localhost:90`即可打开页面，打开部门管理页面，F12查看网络中的depts请求，nginx最终会将请求转给后端的8080端口的Tomcat，实际上是Tomcat来处理的这次请求。响应数据就是JSON格式的数据，经过前端解析之后渲染展示在了表格当中。
   
-  ![image-20240216224107374](./images/image-20240216224107374.png)
+  ![image-20240216224107374](D:\Working\文件\笔记图\JDBC\image-20240216224107374.png)
   
 - 删除部门
 
@@ -4841,11 +4841,11 @@ public class TimeAspect {
 
 打开页面访问部门管理页面，就会请求部门列表数据，控制台中就会输出方法的耗时
 
-![image-20240218190700816](./images/image-20240218190700816.png)
+![image-20240218190700816](D:\Working\文件\笔记图\JDBC\image-20240218190700816.png)
 
 点击编辑部门按钮，就会触发根据id查询部门数据操作，可以在控制台中查看方法的耗时
 
-![image-20240218190736451](./images/image-20240218190736451.png)
+![image-20240218190736451](D:\Working\文件\笔记图\JDBC\image-20240218190736451.png)
 
 这样就完成了业务层耗时统计的操作，可以发现**没有修改任何原始方法就添加了统计方法耗时的功能**
 
@@ -6003,13 +6003,13 @@ public class SpringbootWebConfig2Application {
 
 打开Gson的自动配置类，看看是如何实现的
 
-![image-20240219171320987](./images/image-20240219171320987.png)
+![image-20240219171320987](D:\Working\文件\笔记图\JDBC\image-20240219171320987.png)
 
 打开`@AutoConfiguration`注解，看到底层封装了一个注解`@Configuration`
 
 回到Gson的配置类，看到一个gson方法，返回值类型是Gson，并且加了`@Bean`注解，此时这个类被加载到IoC容器中，这个bean对象自动就有了。所以我们才能使用Autowired自动注入Gson对象直接使用。
 
-![image-20240219171441364](./images/image-20240219171441364.png)
+![image-20240219171441364](D:\Working\文件\笔记图\JDBC\image-20240219171441364.png)
 
 注意：spring.factories是早期SpringBoot配置所加载的文件，在SpringBoot2.7.0之后就转为使用`AutoConfiguration.imports`。2.7.x版本还会兼容.factories文件，到SpringBoot3.0+就会彻底移除
 
@@ -6066,7 +6066,7 @@ public class HeaderConfig {
 
  可以看到果然报错了，提示找不到HeaderParser这样一个bean
 
-![image-20240219175242493](./images/image-20240219175242493.png)
+![image-20240219175242493](D:\Working\文件\笔记图\JDBC\image-20240219175242493.png)
 
 基于这个注解可以轻松实现自动配置功能，只要引入了依赖，bean自动就配置好了，不需要任何的操作。没有引入依赖，bean就不会配置。
 
