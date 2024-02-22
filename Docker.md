@@ -46,11 +46,36 @@ C端负责向Daemon发送请求，接收请求后处理并返回给客户端。
 
 所以各种客户端，都是通过客户端发送给Daemon的，Daemon处理并返回给客户端，然后就可以在终端看到结果了。
 
+**注：微软[官方](https://learn.microsoft.com/zh-cn/windows/wsl/tutorials/wsl-containers)提供了基于WSL2来设置Docker Desktop for Windows的教程，这允许在没有开启hyper-V的电脑中使用Docker Desktop。**
+
+通过WSL来使用Docker，安装完成后通过`sudo service docker start`启动Docker服务，通过`docker version`查看是否启动成功，成功的话可以看到`Server: Docker Engine - Community`的相关信息
+
+通过命令`sudo systemctl enable docker`可以设置Docker开机启动（注：可能会没有作用，解决方法如下）
+
+## 关于设置开机自启无效
+
+以下内容来自Linux中国的知乎文章，[systemd 已可用于 WSL | Linux 中国](https://zhuanlan.zhihu.com/p/567924469)
+
+先通过`ps -p 1`来查看一下，如果CMD属性为`systemd`，那自启动应该可以正常执行，否则需要先回到Windows中，试一下`wsl --version`，如果不能显示如下的信息，则需要执行一下`wsl --update`。
+
+![image-20240222111938725](.\images\image-20240222111938725.png)
+
+当`wsl --version`可以正常显示时，就可以下一步了。
+
+回到WSL命令行中，`sudo vi /etc/wsl.conf`写一个`wsl.conf`文件，按`i`进入`insert`也就是编辑模式，输入
+
+```
+[boot]
+systemd=true
+```
+
+按esc输入后输入`:wq`，重启WSL后输入`systemctl`并回车来尝试命令是否可用，显示出一大堆文件则说明成功，此时就可以再设置开机自启了。
+
+![image-20240222112625714](.\images\image-20240222112625714.png)
+
 # 容器化
 
-将程序打包成容器，在容器中运行应用程序的过程。
-
-可以分成三步：
+将应用程序打包成容器，在容器中运行程序的过程。
 
 1. 创建Dockerfile
 2. 使用Dockerfile构建镜像
@@ -86,7 +111,7 @@ CMD node /index.js
 
 在终端中使用`docker build -t 镜像名 .`，`.`表示当前目录，就是Dockerfile所在的目录。
 
-执行成功后就生成了Docker镜像，使用`docker images`或`docker images ls`来查看所有的镜像
+执行成功后就生成了Docker镜像，使用`docker images`或`docker image ls`来查看所有的镜像
 
 ![image-20240221222850227](.\images\image-20240221222850227.png)
 
