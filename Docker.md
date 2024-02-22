@@ -56,7 +56,7 @@ C端负责向Daemon发送请求，接收请求后处理并返回给客户端。
 
 以下内容来自Linux中国的知乎文章，[systemd 已可用于 WSL | Linux 中国](https://zhuanlan.zhihu.com/p/567924469)
 
-先通过`ps -p 1`来查看一下，如果CMD属性为`systemd`，那自启动应该可以正常执行，否则需要先回到Windows中，试一下`wsl --version`，如果不能显示如下的信息，则需要执行一下`wsl --update`。
+先通过`ps -p 1`来查看一下，如果CMD属性为`systemd`，那自启动应该可以正常执行，否则需要先回到Windows中，试一下`wsl --version`，如果不能显示如下的信息，则需要执行一下`wsl --update`。
 
 ![image-20240222111938725](.\images\image-20240222111938725.png)
 
@@ -96,7 +96,7 @@ Dokefile是一个文本文件包含了指令，用来告诉Docker如何构建镜
 所以要在另一个环境中运行应用程序，需要哪些步骤？
 
 1. 安装OS
-2. 安装运行环境（python）
+2. 安装运行环境（nodejs）
 3. 复制程序、依赖包、配置文件
 4. 执行启动命令运行程序
 
